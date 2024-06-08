@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content  %}
+
+<div class="row mt-3">
+    <div class="col-md-6">
+        <div>
+            <img class="rounded mt-3 w-100" src="{% static "images/banner.jpg" %}" alt="">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h2 class="text-info mb-4">BEST CAR PRICES IN BANGLADESH</h2>
+        <p>Looking for the Best car prices in Bangladesh along with the car lists and details? GariBaree.com has got your back. To help you in making a sensible choice, we here offer complete details on costs and features for a variety of automobiles, including new and reconditioned cars.
+        </p>
+        <p>
+        GariBaree.com provides you all the current market price of 2023. Here you will get to see car prices and detailed listings of cars such as Toyota, Honda, Nissan, Mitsubishi, and Hyundai. Our website enables you to compare various models and make a perfect decision based on car features, capabilities, and fuel efficiency.
+        </p>
+        <p>
+        Find your dream car, whether it is a spacious luxury sedan or a small one. Count on GariBaree.com’s experts to help you navigate the car-buying process. We have segregated car conditions for better information </p>
+    </div>
+</div>
+
+
+{% include "cars/cars.html" %}
+
+{% endblock content  %}
