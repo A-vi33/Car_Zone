@@ -6,17 +6,14 @@
         <hr>
 
         <div>
-            <form action="" method="post">
+            <form action="" method="post" novalidate>
                 {% csrf_token %}
-                <!--{{form|crispy}}-->
-                {% for f in form %}
-                <div class="mb-3">
-                    {{f.label_tag}}
-                    {{f}}
-                    {{f.errors}}
+
+               {{form|crispy}}
+               <hr>
+                <div class="text-center">
+                    <button class="btn btn-outline-light mt-2 w-50 ">Register</button>
                 </div>
-                {% endfor %}
-                <button class="btn btn-outline-dark">Register</button>
             </form>
         </div>
     </div>

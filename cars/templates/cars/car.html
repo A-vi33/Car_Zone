@@ -23,7 +23,7 @@
         <small>{{car.description }}</small>
        
         <hr>
-        <p><a class="btn btn-outline-dark mx-2 px-5 w-100" href=""><i class="fa-solid fa-cart-shopping"></i> Buy Now</a></p>
+        <p><a class="btn btn-outline-light mx-2 px-5 w-100" href="{% url "buy_car" car.id %}"><i class="fa-solid fa-cart-shopping"></i> Buy Now</a></p>
        
     </div>
 </div>

@@ -1,26 +1,33 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from .models import Order
 
-class RegisterForm(UserCreationForm):
-    email = forms.CharField(
-        required=True,
-        widget =  forms.EmailInput(attrs={'placeholder': 'Email Address'}),
-    )
+class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username','first_name', 'last_name', 'email')
-        widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
-            'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
-            # 'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
-        }
-    password1 = forms.CharField(
-    label="Password",
-    widget=forms.PasswordInput(attrs={'placeholder': 'Password'})
-    )
-    password2 = forms.CharField(
-        label="Password confirmation",
-        widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'})
-    )
+        fields = ('username', 'first_name', 'last_name', 'email')
+    
+    def __init__(self, *args, **kwargs):
+        super(UserRegisterForm, self).__init__(*args, **kwargs)
+        # Remove help texts
+        for field_name, field in self.fields.items():
+            field.help_text = ""
+
+        # Set required fields
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+        self.fields['email'].required = True
+        
+        # Add placeholders
+        self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
+        self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
+        self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
+        self.fields['email'].widget.attrs.update({'placeholder': 'Email Address'})
+        self.fields['password1'].widget.attrs.update({'placeholder': 'Your Password'})
+        self.fields['password2'].widget.attrs.update({'placeholder': 'Your Password'})
+        
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('buyer', 'car')

@@ -1,4 +1,4 @@
-<div class="container border border-dark rounded p-2 mt-5">
+<div class="container border border-secondary rounded p-2 mt-5">
    
     <div class="d-flex row px-3">    
         {% for brand in brands %}
@@ -15,7 +15,7 @@
 <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
 {% for car in cars %}
     <div class="col">
-        <div class="card bg-transparent">
+        <div class="card bg-transparent border-secondary">
             <img src="{{car.image.url}}" class="card-img-top " alt="...">
             <div class="card-body text-white">
                 <h5 class="card-title text-info">{{car.name}}</h5>
@@ -23,7 +23,7 @@
                 <p class="card-text">Brand: {{car.brand}}</p>
             </div>
             <div class="card-footer">
-                <a class="btn btn-outline-dark w-100" href="{% url "car_details" car.id %}">View Details</a>
+                <a class="btn btn-outline-light w-100" href="{% url "car_details" car.id %}">View Details</a>
             </div>
         </div>
   </div>

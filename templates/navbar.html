@@ -14,10 +14,10 @@
         {% if request.user.is_authenticated %}
        
         <li class="nav-item">
-          <a class="nav-link text-white" href="">Profile</a>
+          <a class="nav-link text-white" href="{% url "profile" %}">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-dark text-white" href="">Logout</a>
+          <a class="btn btn-outline-dark text-white" href="{% url "logout" %}">Logout</a>
         </li>
 
         {% else %}
@@ -25,7 +25,7 @@
           <a class="nav-link text-white" href="{% url "register" %}">Register</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-dark text-white" href="">Login</a>
+          <a class="btn btn-outline-dark text-white" href="{% url "login" %}">Login</a>
         </li>
       
         {% endif %}  
