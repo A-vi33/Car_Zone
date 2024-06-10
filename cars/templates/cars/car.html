@@ -29,43 +29,50 @@
 </div>
 <hr><hr>
 
-{% comment %} 
 <div class="row">
     <div class="col-md-6 border border-dark p-3 rounded">
         <h4>Add a new comment... </h4>
         <hr>
-
         <div>
             <form action="" method="post">
                 {% csrf_token %}
                 {{comment_form|crispy}}
-                <button class="btn btn-outline-dark px-5">Comment</button>
+                <button class="btn btn-outline-light px-5">Comment</button>
             </form>
         </div>
     </div>
 
 
     <div class="col-md-6 border border-dark p-3 rounded">
-        {% if post.comments.count == 0 %}
+        {% if car.comments.count == 0 %}
             <h4>No Comments...</h4>
         {% else %}
-            <h4>{{ post.comments.count }} comment{{ post.comments.count|pluralize }}</h4>
+        <h4>{{ car.comments.count }} comment{{ car.comments.count|pluralize }}</h4>
+
+            
         {% endif %}
         <hr>
-        {% for comment in post.comments.all %}
-            <div class="comment border border-dark rounded p-3" >
-                <h5 class="text-success fst-italic">{{comment.name}}</h5>
+        {% for comment in car.comments.all %}
+            <div class="comment border border-light rounded p-3" >
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="text-success fst-italic">{{comment.name}}</h5>
+                    </div>
+                    <div class="col-md-6  text-end">
+                        <small class="text-end">{{comment.created_at}}</small>
+    
+                    </div>
+                </div>
                 <small class="text-start">{{comment.email}}</small>
-                <br>
-                <small class="text-end">{{comment.created_at}}</small>
+                
                 <hr>
-                <p>{{comment.body}}</p>
+                <p>{{comment.comment}}</p>
             </div>
         {% endfor %}
     </div>
     
 
-</div> {% endcomment %}
+</div> 
 
 
 {% endblock content %}

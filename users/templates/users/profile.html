@@ -10,9 +10,9 @@
             <p>Username: {{user.username}}</p>
         </div>
         <div class="col-md-6 m-auto text-center">
-            <a class="btn btn-outline-light m-2 w-75" href="">Update Profile</a>
+            <a class="btn btn-outline-light m-2 w-75" href="{% url "update_profile" %}">Update Profile</a>
             <br>
-            <a class="btn btn-outline-light m-2 w-75" href="">Change Password</a>
+            <a class="btn btn-outline-light m-2 w-75" href="{% url "change_password" %}">Change Password</a>
         </div>
     </div>
 

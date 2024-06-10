@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg " >
+<nav class="navbar navbar-expand-lg " data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand text-info fw-bold" href="{% url "home" %}"><span class='text-white fw-bolder'>C</span>ar<span class='text-white fw-bolder'>Z</span>one </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,24 +8,24 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item ">
-            <a class="nav-link text-white" aria-current="page" href="{% url "home" %}">Home</a>
+            <a class="nav-link " aria-current="page" href="{% url "home" %}">Home</a>
           </li>
           
         {% if request.user.is_authenticated %}
        
         <li class="nav-item">
-          <a class="nav-link text-white" href="{% url "profile" %}">Profile</a>
+          <a class="nav-link " href="{% url "profile" %}">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-dark text-white" href="{% url "logout" %}">Logout</a>
+          <a class="btn btn-outline-light" href="{% url "logout" %}">Logout</a>
         </li>
 
         {% else %}
         <li class="nav-item">
-          <a class="nav-link text-white" href="{% url "register" %}">Register</a>
+          <a class="btn btn-outline-light " href="{% url "register" %}">Register</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-dark text-white" href="{% url "login" %}">Login</a>
+          <a class="btn btn-outline-light" href="{% url "login" %}">Login</a>
         </li>
       
         {% endif %}  
