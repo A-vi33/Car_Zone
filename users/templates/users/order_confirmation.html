@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<!-- templates/email/order_confirmation.html -->
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    <h2>Order Confirmation - Car Zone</h2>
+    <p>Dear {{ username }},</p>
+    <p>Thank you for your purchase! Your order details are below:</p>
+
+    <div style="background: #f9f9f9; padding: 15px; margin: 20px 0;">
+        <h3>Order Summary</h3>
+        <p><strong>Car:</strong> {{ car_name }}</p>
+        <p><strong>Amount Paid:</strong> ₹{{ amount }}</p>
+        <p><strong>Delivery Address:</strong><br>
+        {{ address.address_line_1 }}<br>
+        {% if address.address_line_2 %}{{ address.address_line_2 }}<br>{% endif %}
+        {{ address.city }}, {{ address.state }}<br>
+        {{ address.zip_code }}<br>
+        {{ address.country }}</p>
+    </div>
+
+    <p>Your car will be delivered within {{ delivery_time }} working days.</p>
+    <p>You can track your order status in your profile.</p>
+
+    <p>Thank you for choosing Car Zone!</p>
+    <p>Best regards,<br>Car Zone Team</p>
+</div>

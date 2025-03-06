@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+# from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -27,9 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,9 +44,7 @@ INSTALLED_APPS = [
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,7 +61,7 @@ ROOT_URLCONF = 'car_zone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,21 +76,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'car_zone.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'less',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'PORT': '3306',
+        'HOST': '127.0.0.1',
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -109,35 +106,50 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Asia/Dhaka'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
-STATICFILES_DIRS = [
-    BASE_DIR/'static',
-]
-
-# Base url to serve media files
+# Media files
 MEDIA_URL = '/media/'
-
-# Path where media is stored'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Razorpay integration
+# Razorpay settings
+RAZORPAY_API_KEY = 'rzp_test_Ty2fPZgb35aMIa'
+RAZORPAY_API_SECRET = 'ZgfcgxrODeoTcKqjfieKDDDW'
+
+RAZORPAY_KEY_ID = "rzp_test_Ty2fPZgb35aMIa"
+RAZORPAY_KEY_SECRET = "ZgfcgxrODeoTcKqjfieKDDDW"
+
+# settings.py
+
+# Session settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Use database-backed sessions
+SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_AGE = 86400  # 24 hours in seconds
+SESSION_SAVE_EVERY_REQUEST = True  # Save the session on every request
+# RAZORPAY_KEY_ID = config('RAZORPAY_KEY_ID', default='rzp_test_Ty2fPZgb35aMIa')
+# RAZORPAY_KEY_SECRET = config('RAZORPAY_KEY_SECRET', default='ZgfcgxrODeoTcKqjfieKDDDW')
+
+# Email configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mohith202421@gmail.com'
+EMAIL_HOST_PASSWORD = 'wjdw htnn ocve ltmp'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'your-email@gmail.com'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

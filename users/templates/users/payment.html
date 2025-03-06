@@ -1,10 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Complete Your Payment</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h4>Order Summary</h4>
+                        <p><strong>Car:</strong> {{ car.name }}</p>
+                        <p><strong>Price:</strong> ₹{{ car.price|floatformat:2 }}</p>
+                    </div>
+
+                    <!-- Razorpay Payment Button -->
+                    <button id="rzp-button" class="btn btn-primary">Pay Now</button>
+
+                    <!-- Hidden form for manual submission (optional fallback) -->
+                    <form id="payment-form" action="{% url 'payment_handler' %}" method="POST" style="display: none;">
+                        {% csrf_token %}
+                        <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+                        <input type="hidden" name="razorpay_order_id" id="razorpay_order_id" value="{{ order_id }}">
+                        <input type="hidden" name="razorpay_signature" id="razorpay_signature">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.getElementById('rzp-button').onclick = function(e) {
+    var options = {
+        "key": "{{ key_id }}",
+        "amount": "{{ amount }}",
+        "currency": "INR",
+        "name": "Car Zone",
+        "description": "Purchase of {{ car.name }}",
+        "order_id": "{{ order_id }}",
+        "prefill": {
+            "name": "{{ user_name }}",
+            "email": "{{ user_email }}",
+            "contact": "{{ user_contact }}"
+        },
+        "theme": {
+            "color": "#0d6efd"
+        },
+        "handler": function (response) {
+            // Populate hidden form fields with payment details
+            document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+            document.getElementById('razorpay_order_id').value = response.razorpay_order_id;
+            document.getElementById('razorpay_signature').value = response.razorpay_signature;
+
+            // Submit the form to paymentHandler
+            document.getElementById('payment-form').submit();
+        }
+    };
+    var rzp = new Razorpay(options);
+    rzp.open();
+    e.preventDefault();
+}
+</script>
+{% endblock %}

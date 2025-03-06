@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Add Delivery Address</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ address_form|crispy }}
+        <button type="submit" class="btn btn-primary">Save Address</button>
+    </form>
+</div>
+{% endblock %}

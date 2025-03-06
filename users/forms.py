@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
-from .models import Order
 
 class UserRegisterForm(UserCreationForm):
     class Meta:
@@ -29,7 +28,7 @@ class UserRegisterForm(UserCreationForm):
         
 
 class UserUpdateForm(UserChangeForm):
-    password=None
+    email = forms.EmailField(required=True)
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
@@ -51,4 +50,12 @@ class UserUpdateForm(UserChangeForm):
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
         self.fields['email'].widget.attrs.update({'placeholder': 'Email Address'})
         
-        
+class AddressForm(forms.Form):
+    address_line_1 = forms.CharField(max_length=255, required=True, widget=forms.TextInput(attrs={'placeholder': 'Address Line 1'}))
+    address_line_2 = forms.CharField(max_length=255, required=False, widget=forms.TextInput(attrs={'placeholder': 'Address Line 2'}))
+    city = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'City'}))
+    state = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'State'}))
+    zip_code = forms.CharField(max_length=20, required=True, widget=forms.TextInput(attrs={'placeholder': 'ZIP Code'}))
+    country = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'Country'}))
+
+

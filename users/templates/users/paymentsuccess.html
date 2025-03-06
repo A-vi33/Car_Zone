@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-success">
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 64px;"></i>
+                    </div>
+                    <h2 class="card-title text-success mb-4">Payment Successful!</h2>
+                    <div class="alert alert-success">
+                        <p class="mb-2">Thank you for your purchase!</p>
+                        <p class="mb-2">Your car will be delivered within 4 working days.</p>
+                        <p class="mb-0">A confirmation email has been sent to your registered email address.</p>
+                    </div>
+                    <div class="mt-4">
+                        <a href="{% url 'home' %}" class="btn btn-primary">
+                            <i class="fas fa-home me-2"></i>Return to Home
+                        </a>
+                        <a href="{% url 'profile' %}" class="btn btn-secondary ms-2">
+                            <i class="fas fa-user me-2"></i>View Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

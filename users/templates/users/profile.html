@@ -10,9 +10,11 @@
             <p>Username: {{user.username}}</p>
         </div>
         <div class="col-md-6 m-auto text-center">
-            <a class="btn btn-outline-light m-2 w-75" href="{% url "update_profile" %}">Update Profile</a>
+            <a class="btn btn-outline-light m-2 w-75" href="{% url 'update_profile' %}">Update Profile</a>
             <br>
-            <a class="btn btn-outline-light m-2 w-75" href="{% url "change_password" %}">Change Password</a>
+            <a class="btn btn-outline-light m-2 w-75" href="{% url 'change_password' %}">Change Password</a>
+            <br>
+            <a class="btn btn-success m-2 w-75" href="{% url 'initiate_payment' %}">Add Funds via Razorpay</a>
         </div>
     </div>
 
@@ -31,14 +33,11 @@
                             <h6 class="text-warning">Price: {{order.car.price}} BDT</h6>
                             <p class="card-text">Brand: {{order.car.brand}}</p>
                         </div>
-                        
                     </div>
                 </div>
             {% endfor %}
         </div>
-
     </div>
-
 </div>
 
 {% endblock content  %}
